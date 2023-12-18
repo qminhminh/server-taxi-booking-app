@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const CarDetail = require('./car_detail_model');
 
-const driverSchema = new mongoose.Schema({
+const driverSchema = mongoose.Schema({
 
    blockStatus: {
     type: String,
@@ -35,10 +35,6 @@ const driverSchema = new mongoose.Schema({
      },
      message: "Please enter a long pass",
     },
-   },
-   id: {
-    type: String,
-    default:''
    },
 
    name: {

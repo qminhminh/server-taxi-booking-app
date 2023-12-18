@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const http = require('http');
 const morgan = require('morgan');
+const authRouter = require('./routers/auth');
 const DB = "mongodb+srv://hqminh050503:minh050503@cluster0.kornrcw.mongodb.net/?retryWrites=true&w=majority";
 const app = express();
 var server = http.createServer(app);
@@ -14,6 +15,7 @@ const PORTSERVER = process.env.PORT || 4000;
 app.use(express.json());
 app.use(morgan('combined'));
 app.use(cors());
+app.use("/api/customer",authRouter);
 
 
 // listen port

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const customerSchema = new mongoose.Schema({
+const customerSchema = mongoose.Schema({
     blockStatus: {
         type: String,
         default: 'no'
@@ -28,10 +28,6 @@ const customerSchema = new mongoose.Schema({
          message: "Please enter a long pass",
         },
        },
-       id: {
-        type: String,
-        default:''
-       },
        name: {
         type: String,
         default: '',
@@ -46,6 +42,10 @@ const customerSchema = new mongoose.Schema({
        photo: {
         type: String,
         default: ''
+       },
+       type: {
+         type: String,
+         default: 'user'
        }  
 });
 
