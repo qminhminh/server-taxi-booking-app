@@ -13,16 +13,16 @@ const registerCustomer = async(email, hashedPass, name, phone, photo)=>{
         const exitphone = await Customer.findOne({phone});
         
         if(exitUser){
-            return res.status(400).json({
+            return {
               status: 400,
               msg: "User with same email already exists"
-            });
+            };
         }
         if(exitphone){
-          return res.status(400).json({
+          return {
             status: 400,
             msg: "User with same phone number already exists"
-          });
+          };
         }
        
         let customer = new Customer({            
@@ -49,21 +49,21 @@ const registerDrivers = async(email,password, name, phone, photo, carColor, carM
 
   try{
       
-    let exitUser = await Driver.findOne({email});
+    const exitUser = await Driver.findOne({email});
     const exitUsercus = await Customer.findOne({email});
     const exitphone = await Driver.findOne({phone});
     
     if(exitUser || exitUsercus){
-      return res.status(400).json({
+      return {
         status: 400,
         msg: "User with same email already exists"
-      });
+      };
     }
     if(exitphone){
-      return res.status(400).json({
+      return {
         status: 400,
         msg: "User with same phone number already exists"
-      });
+      };
     }
     const hashedPass = await bcryptjs.hash(password, 8 );
     // car detail
