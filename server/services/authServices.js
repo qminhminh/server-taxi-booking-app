@@ -31,6 +31,7 @@ const registerCustomer = async(email, hashedPass, name, phone, photo)=>{
     }
     catch(e){
       return {
+        status:500,
         error: e.message
       }
     }
@@ -54,16 +55,16 @@ const registerDrivers = async(email,password, name, phone, photo, carColor, carM
     }
     const hashedPass = await bcryptjs.hash(password, 8 );
     let car = new CarDetail({
-        carColor: "carColor",
-        carModel: "carModel",
-        carNumber: "carNumber",
+        carColor: carColor,
+        carModel: carModel,
+        carNumber: carNumber,
     });
     let driver = new Driver({
       cardetails:[
        {
-        carColor: "carColor",
-        carModel: "carModel",
-        carNumber: "carNumber",
+        carColor: carColor,
+        carModel: carModel,
+        carNumber: carNumber,
        },
       ],
       email: email,
@@ -80,6 +81,7 @@ const registerDrivers = async(email,password, name, phone, photo, carColor, carM
 
   }catch(e){
     return {
+      status:500,
       error: e.message
     };
   }
