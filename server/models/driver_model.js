@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const CarDetail = require('./car_detail_model');
+const {CarDetail,cardetailSchema} = require('./car_detail_model');
 
 const driverSchema = mongoose.Schema({
 
@@ -8,7 +8,7 @@ const driverSchema = mongoose.Schema({
     default: 'no'
    },
 
-   cardetails: [CarDetail],
+   cardetails: [cardetailSchema],
    deviceToken: {
     type: String,
     default: ''

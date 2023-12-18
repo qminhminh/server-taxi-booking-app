@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 
-const cardetailSchema = mongoose.Schema({
+const cardetailSchema = new mongoose.Schema({
    carColor: {
     type: String,
     default:'',
@@ -22,5 +22,5 @@ const cardetailSchema = mongoose.Schema({
 
 });
 
-const CarDetail = mongoose.model('CarDetail', cardetailSchema);
-module.exports = CarDetail;
+const CarDetail = mongoose.model('Cardetail', cardetailSchema);
+module.exports = {CarDetail,cardetailSchema};
