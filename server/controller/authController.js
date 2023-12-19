@@ -15,7 +15,9 @@ const registerCustomer = async(req, res) =>{
     return res.json(result);
 
    }catch(e){
-    return res.status(500).json(e);
+    return res.status(500).json({
+       error: e.message
+    });
    }
 };
 
@@ -29,40 +31,12 @@ const loginCutomer = async(req, res) =>{
    console.log(result)
    return res.json(result);
   }catch(e){
-   return res.status(500).json(e);
+   return res.status(500).json({
+      error: e.message
+   });
   }
 };
 
-//==============================* Drivers *=============================
-//register drivers
-const registerDrivers = async(req, res)=>{
-  
-   try{
-      const{email,password, name, phone, photo, carColor, carModel, carNumber} = req.body;
-      const result = await authServices.registerDrivers(email,password, name, phone, photo, carColor, carModel, carNumber);
-      
-      console.log("registerDrivers: ");
-      console.log(result);
-      return res.json(result);
 
-   }catch(e){
-      return res.status(500).json({error: e.message});
-   }
 
-};
-
-// login drivers
-const loginDrivers = async(req, res)=>{
-   try{
-      const {email, password, token} = req.body;
-      const result = await authServices.loginDrivers(email, password, token);
-      console.log("loginDrivers");
-      console.log(result);
-
-      return res.json(result);
-   }catch(e){
-      return res.status(500).json(e);
-   }
-
-};
-module.exports = {registerCustomer, registerDrivers, loginCutomer, loginDrivers};
+module.exports = {registerCustomer, loginCutomer};
