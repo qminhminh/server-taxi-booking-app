@@ -1,7 +1,8 @@
 const authServices = require("../services/authServices");
 const bcryptjs = require('bcryptjs');
 
-// ========================= register customer ================================ 
+// ========================= Customer ================================ 
+// register customer
 const registerCustomer = async(req, res) =>{
    try{
      
@@ -32,7 +33,8 @@ const loginCutomer = async(req, res) =>{
   }
 };
 
-//==============================* register drivers *=============================
+//==============================* Drivers *=============================
+//register drivers
 const registerDrivers = async(req, res)=>{
   
    try{
@@ -48,4 +50,19 @@ const registerDrivers = async(req, res)=>{
    }
 
 };
-module.exports = {registerCustomer, registerDrivers, loginCutomer};
+
+// login drivers
+const loginDrivers = async(req, res)=>{
+   try{
+      const {email, password, token} = req.body;
+      const result = await authServices.loginDrivers(email, password, token);
+      console.log("loginDrivers");
+      console.log(result);
+
+      return res.json(result);
+   }catch(e){
+      return res.status(500).json(e);
+   }
+
+};
+module.exports = {registerCustomer, registerDrivers, loginCutomer, loginDrivers};
