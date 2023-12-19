@@ -46,7 +46,12 @@ const customerSchema = mongoose.Schema({
        type: {
          type: String,
          default: 'user'
-       }  
+       },
+       token: {
+         type: String,
+         default:'',
+         required: true
+       }
 });
 
 const Customer = mongoose.model('Users', customerSchema);

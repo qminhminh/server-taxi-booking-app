@@ -6,7 +6,7 @@ const Driver = require('../models/driver_model');
 const { CarDetail } = require('../models/car_detail_model');
 
 
-// register customer 
+// ============================ register customer ======================================
 const registerCustomer = async(email, hashedPass, name, phone, photo)=>{
     try{
         const exitUser = await Customer.findOne({email});
@@ -43,8 +43,43 @@ const registerCustomer = async(email, hashedPass, name, phone, photo)=>{
     }
 };
 
+//============================== login customer ========================================
+const loginCutomer = async(email, password, tokenn)=>{
+   try{
+     const user = await Customer.findOne({email});
+     const isMatch = bcryptjs.compare(password,user.password);
+     
+     if(!user){
+      return {
+        status: 400,
+        msg: "User with same email or password already not exists"
+      };
+     }else{
+           user.token = tokenn;
+           await user.save();
+     }
+     
+      //bcryptjs
+      if(!isMatch){
+         return {
+          status: 400,
+          msg: "Incorrect password"
+        };
+      }
 
-// register drivers
+      const token = jwt.sign({id: user._id},"passwordKey");
+      
+      return {token, ...user._doc};
+     
+   }catch{
+    return {
+      status: 500,
+      error: e.message,
+    }
+   }
+};
+
+// ============================== register drivers ==========================
 const registerDrivers = async(email,password, name, phone, photo, carColor, carModel, carNumber)=>{
 
   try{
@@ -101,4 +136,4 @@ const registerDrivers = async(email,password, name, phone, photo, carColor, carM
   }
 
 };
-module.exports = {registerCustomer, registerDrivers};
+module.exports = {registerCustomer, registerDrivers, loginCutomer};
