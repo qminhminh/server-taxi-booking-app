@@ -16,6 +16,8 @@ const PORTSERVER = process.env.PORT || 4000;
 app.use(express.json());
 app.use(morgan('combined'));
 app.use(cors());
+
+// Router 
 app.use("/api/users",authRouter);
 app.use("", tokenRouter);
 

@@ -45,7 +45,7 @@ const registerCustomer = async(email, hashedPass, name, phone, photo)=>{
 };
 
 //login customer 
-const loginCutomer = async(email, password, tokenn)=>{
+const loginCutomer = async(email, password)=>{
    try{
      const user = await Customer.findOne({email});
      const isMatch = bcryptjs.compare(password,user.password);
@@ -55,9 +55,6 @@ const loginCutomer = async(email, password, tokenn)=>{
         status: 400,
         msg: "User with same email or password already not exists"
       };
-     }else{
-           user.token = tokenn;
-           await user.save();
      }
      
       //bcryptjs

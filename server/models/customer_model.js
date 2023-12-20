@@ -41,7 +41,6 @@ const customerSchema = mongoose.Schema({
        },
        photo: {
         type: String,
-        default: ''
        },
        type: {
          type: String,
@@ -49,8 +48,6 @@ const customerSchema = mongoose.Schema({
        },
        token: {
          type: String,
-         default:'',
-         required: true
        }
 });
 
