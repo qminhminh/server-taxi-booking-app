@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const authRouter = require('./routers/auth');
 const tokenRouter = require('./routers/token');
 const morgandebug = require('morgan-debug');
+const adminRouter = require('./routers/admin');
 const DB = "mongodb+srv://hqminh050503:minh050503@cluster0.kornrcw.mongodb.net/?retryWrites=true&w=majority";
 const app = express();
 var server = http.createServer(app);
@@ -20,8 +21,9 @@ app.use(morgandebug('server:server', 'dev'));
 app.use(cors());
 
 // Router 
-app.use("/api/users",authRouter);
+app.use("/api/users", authRouter);
 app.use(tokenRouter);
+app.use("/api/admin", adminRouter)
 
 
 // listen port
