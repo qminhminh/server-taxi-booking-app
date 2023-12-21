@@ -5,6 +5,7 @@ const http = require('http');
 const morgan = require('morgan');
 const authRouter = require('./routers/auth');
 const tokenRouter = require('./routers/token');
+const morgandebug = require('morgan-debug');
 const DB = "mongodb+srv://hqminh050503:minh050503@cluster0.kornrcw.mongodb.net/?retryWrites=true&w=majority";
 const app = express();
 var server = http.createServer(app);
@@ -15,11 +16,12 @@ const PORTSERVER = process.env.PORT || 4000;
 // middleware 
 app.use(express.json());
 app.use(morgan('combined'));
+app.use(morgandebug('server:server', 'dev'));
 app.use(cors());
 
 // Router 
 app.use("/api/users",authRouter);
-app.use("", tokenRouter);
+app.use(tokenRouter);
 
 
 // listen port

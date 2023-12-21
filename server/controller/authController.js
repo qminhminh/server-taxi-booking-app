@@ -55,6 +55,4 @@ const loginCutomer = async(req, res) =>{
   }
 };
 
-
-
 module.exports = {registerCustomer, loginCutomer};
