@@ -2,8 +2,8 @@
 const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs');
 const Customer = require('../models/customer_model');
-const Driver = require('../models/driver_model');
-const { CarDetail } = require('../models/car_detail_model');
+
+
 
 
 // ============================* Customer *=====================================
