@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-
+// Model GEofire for onliner driver
 const GeofireSchema = mongoose.Schema({
   idm: {
     type: String,

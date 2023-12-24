@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+// model trip request
 const tripScheme = mongoose.Schema({
     tripID: {
         type: String,

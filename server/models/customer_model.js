@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+// Model Customer
 const customerSchema = mongoose.Schema({
     blockStatus: {
         type: String,

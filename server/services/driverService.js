@@ -4,6 +4,7 @@ const TripRequest = require("../models/triprequest_model");
 // add trip request 
 const tripRequest = async(tripID, publishDateTime, userName, userPhone, userID, latpick, longpick, latdrop, longdrop, pickUpAddress, dropOffAddress, driverID, latdriver, longdriver)=>{
 try{
+  // find tripid in tiprequest
   const trip = await TripRequest.findOne({tripID});
 
   if(!trip){
@@ -63,6 +64,7 @@ try{
 // update trip new status
 const updateTripNewStatus = async(driverid, trip) =>{
    try{
+    // update all newTripstatus = trip based driverid
      const driver = await Driver.updateMany(
       { idf: { $in: driverid } },
       { newTripStatus: trip }

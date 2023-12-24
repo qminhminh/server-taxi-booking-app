@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const Customer = require('../models/customer_model');
 
 
+// check type = admin
 const admin = async( req, res,next) => {
     try{
         // check x auth token

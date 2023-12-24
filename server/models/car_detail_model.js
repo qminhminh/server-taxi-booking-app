@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-
+// Car detlai Model
 const cardetailSchema = new mongoose.Schema({
    carColor: {
     type: String,

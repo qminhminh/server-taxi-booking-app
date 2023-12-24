@@ -10,6 +10,7 @@ const Customer = require('../models/customer_model');
 // register cutomer
 const registerCustomer = async(email, hashedPass, name, phone, photo)=>{
     try{
+        // check exist user and phone
         const exitUser = await Customer.findOne({email});
         const exitphone = await Customer.findOne({phone});
         
@@ -25,7 +26,8 @@ const registerCustomer = async(email, hashedPass, name, phone, photo)=>{
             msg: "User with same phone number already exists"
           };
         }
-       
+        
+        // save customer 
         let customer = new Customer({            
            email: email,
            password: hashedPass, 
@@ -47,6 +49,7 @@ const registerCustomer = async(email, hashedPass, name, phone, photo)=>{
 //login customer 
 const loginCutomer = async(email, password)=>{
    try{
+    // check emial exist and bycryjs password
      const user = await Customer.findOne({email});
      const isMatch = bcryptjs.compare(password,user.password);
      
@@ -64,7 +67,8 @@ const loginCutomer = async(email, password)=>{
           msg: "Incorrect password"
         };
       }
-
+      
+      // token for users
       const token = jwt.sign({id: user._id},"passwordKey");
       
       return {token, ...user._doc};

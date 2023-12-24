@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-
+// Model Drivers
 const driverSchema = mongoose.Schema({
 
    blockStatus: {

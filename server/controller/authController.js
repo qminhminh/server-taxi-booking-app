@@ -5,13 +5,18 @@ const bcryptjs = require('bcryptjs');
 // register customer
 const registerCustomer = async(req, res) =>{
    try{
-     
+     // data for client requst server
     const {email,password, name, phone, photo} = req.body;
-    const hashedPass = await bcryptjs.hash(password, 8 );
 
+    // hash pass password
+    const hashedPass = await bcryptjs.hash(password, 8 );
     const result = await authServices.registerCustomer(email,hashedPass, name, phone, photo );
+    
+    // console log register customer 
     console.log("registerCustomer: ");
     console.log(result);
+
+    // check result status
     if (result.status === 400) {
       return res.status(400).json({
         msg: result.msg,
@@ -33,11 +38,15 @@ const registerCustomer = async(req, res) =>{
 // login customer
 const loginCutomer = async(req, res) =>{
   try{
+   // data in client equest server
    const{email, password} = req.body;
-   
    const result = await authServices.loginCutomer(email, password);
+   
+   // console log login 
    console.log("loginCutomer: ");
    console.log(result);
+
+   // check result status
    if (result.status === 400) {
       return res.status(400).json({
         msg: result.msg,
