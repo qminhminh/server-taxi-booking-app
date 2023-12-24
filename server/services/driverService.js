@@ -1,5 +1,7 @@
+const Driver = require("../models/driver_model");
 const TripRequest = require("../models/triprequest_model");
 
+// add trip request 
 const tripRequest = async(tripID, publishDateTime, userName, userPhone, userID, latpick, longpick, latdrop, longdrop, pickUpAddress, dropOffAddress, driverID, latdriver, longdriver)=>{
 try{
   const trip = await TripRequest.findOne({tripID});
@@ -54,8 +56,58 @@ try{
     return {
         status:500,
         error: e.message
-      }
+      };
 };
 };
 
-module.exports = {tripRequest};
+// update trip new status
+const updateTripNewStatus = async(driverid, trip) =>{
+   try{
+     const driver = await Driver.updateMany(
+      { idf: { $in: driverid } },
+      { newTripStatus: trip }
+    );
+     
+     if (!driver) {
+      return {
+        status: 400,
+        msg: driverid
+      };
+    }
+
+ // Sử dụng biến trip thay vì 'trip'
+    await driver.save();
+
+    return {
+      status: 200,
+      data: driver
+    };
+
+   }catch(e){
+    return {
+      status:500,
+      error: e.message
+    };
+   }
+};
+
+// get all token drivers 
+const getTokenDrivers = async(uiddriver) => {
+  try{
+    const drivers = await Driver.find({ idf: { $in: uiddriver } });
+    
+    const tokens = drivers.map(driver => driver.deviceToken);
+    
+    return {
+      status: 200,
+      data: tokens,
+    };
+  }catch(e){
+    return {
+      status:500,
+      error: e.message
+    };
+  }
+};
+
+module.exports = {tripRequest, updateTripNewStatus, getTokenDrivers};

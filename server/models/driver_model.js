@@ -72,6 +72,9 @@ const driverSchema = mongoose.Schema({
    photo: {
     type: String,
     default: ''
+   },
+   idf: {
+      type: String,
    }
 });
 
