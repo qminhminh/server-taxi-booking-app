@@ -8,7 +8,7 @@ const Customer = require('../models/customer_model');
 
 // ============================* Customer *=====================================
 // register cutomer
-const registerCustomer = async(email, hashedPass, name, phone, photo)=>{
+const registerCustomer = async(email, hashedPass, name, phone, photo, idf)=>{
     try{
         // check exist user and phone
         const exitUser = await Customer.findOne({email});
@@ -34,6 +34,7 @@ const registerCustomer = async(email, hashedPass, name, phone, photo)=>{
            name: name, 
            phone: phone, 
            photo: photo,
+           idf: idf,
         });
         customer = await customer.save();
         return customer;

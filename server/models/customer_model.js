@@ -48,6 +48,10 @@ const customerSchema = mongoose.Schema({
        },
        token: {
          type: String,
+       }, 
+       idf: {
+         type: String,
+         required: true,
        }
 });
 

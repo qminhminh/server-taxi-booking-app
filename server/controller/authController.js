@@ -6,11 +6,11 @@ const bcryptjs = require('bcryptjs');
 const registerCustomer = async(req, res) =>{
    try{
      // data for client requst server
-    const {email,password, name, phone, photo} = req.body;
+    const {email,password, name, phone, photo, idf} = req.body;
 
     // hash pass password
     const hashedPass = await bcryptjs.hash(password, 8 );
-    const result = await authServices.registerCustomer(email,hashedPass, name, phone, photo );
+    const result = await authServices.registerCustomer(email,hashedPass, name, phone, photo, idf );
     
     // console log register customer 
     console.log("registerCustomer: ");
