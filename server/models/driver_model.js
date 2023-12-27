@@ -75,6 +75,9 @@ const driverSchema = mongoose.Schema({
    },
    idf: {
       type: String,
+   },
+   earnings: {
+      type: String,
    }
 });
 

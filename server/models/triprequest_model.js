@@ -95,7 +95,11 @@ const tripScheme = mongoose.Schema({
     status:{
         type: String,
         default: 'new',
+    },
+    fareAmount: {
+        type: String,
     }
+
 
 });
 
