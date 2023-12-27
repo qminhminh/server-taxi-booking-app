@@ -63,8 +63,17 @@ const tripScheme = mongoose.Schema({
         require: true,
     },
     carDetails: {
-        type: String,
-        default: '',
+        carColor: {
+            type: String,         
+         },
+        
+         carModel: {
+            type: String,
+         },
+        
+         carNumber: {
+            type: String,
+         },
     },
     driverLocation: {
         latitude: {
@@ -98,8 +107,8 @@ const tripScheme = mongoose.Schema({
     },
     fareAmount: {
         type: String,
-    }
-
+    },
+    
 
 });
 
