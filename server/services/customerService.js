@@ -2,7 +2,7 @@ const Customer = require("../models/customer_model");
 const TripRequest = require("../models/triprequest_model");
 
 // update device token
-const updateDeviceToken = async(email, devicetoken) => {
+const updateDeviceToken = async(email, devicetoken, uid) => {
     try{
       const customer = await Customer.findOne({email});
       
@@ -16,6 +16,7 @@ const updateDeviceToken = async(email, devicetoken) => {
       
       // update token
       customer.token = devicetoken;
+      customer.idf = uid;
       await customer.save();
       
       return customer;

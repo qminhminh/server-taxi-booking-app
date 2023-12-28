@@ -5,8 +5,8 @@ const customerServices = require("../services/customerService");
 const updateDeviceToken = async(req, res) =>{
     try{
        // data for Client request server
-       const {email, devicetoken} = req.body;
-       const result = await customerServices.updateDeviceToken(email, devicetoken);
+       const {email, devicetoken, uid} = req.body;
+       const result = await customerServices.updateDeviceToken(email, devicetoken, uid);
        
        // console log update device device token
        console.log("updateDeviceToken: ");
