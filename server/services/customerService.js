@@ -1,4 +1,5 @@
 const Customer = require("../models/customer_model");
+const TripRequest = require("../models/triprequest_model");
 
 // update device token
 const updateDeviceToken = async(email, devicetoken) => {
@@ -26,4 +27,26 @@ const updateDeviceToken = async(email, devicetoken) => {
     }
   };
 
-  module.exports = {updateDeviceToken};
+// get inform ation for driver
+const getInfoDriverInTripRequest = async() => {
+  try{
+    const trip = await TripRequest.findOne({tripID: tripID});
+    
+    // check driver
+    if(!trip){
+      return {
+        status: 400,
+        msg: "get inform ation for driver not exist"
+      };
+    }
+    
+    return trip;
+  }catch(e){
+    return {
+      status: 500,
+      error: e.message,
+    };
+  }
+};
+
+  module.exports = {getInfoDriverInTripRequest, updateDeviceToken};

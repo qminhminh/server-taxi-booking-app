@@ -29,6 +29,36 @@ const updateDeviceToken = async(req, res) =>{
         error: e.message
       });
     }
+};
+
+  // get inform ation for driver
+  const getInfoDriverInTripRequest = async(req, res) =>{
+    try{
+       // data for Client request server
+       const tripID = req.params.tripID;
+       const result = await customerServices.getInfoDriverInTripRequest(tripID);
+       
+       // console log update device device token
+       console.log("getInfoDriverInTripRequest: ");
+       console.log(result);
+       
+       // check result
+       if (result.status === 400) {
+          return res.status(400).json({
+            msg: result.msg,
+          });
+        } else if (result.status === 500) {
+          return res.status(500).json({
+            error: result.error,
+          });
+        }
+  
+       return res.status(200).json(result);
+    }catch(e){
+      return res.status(500).json({
+        error: e.message
+      });
+    }
   };
 
-  module.exports = {updateDeviceToken};
+  module.exports = {getInfoDriverInTripRequest, updateDeviceToken};
