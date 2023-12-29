@@ -66,7 +66,7 @@ io.on("connection", (socket) => {
           chat.chats.push(mess);
           await chat.save();
 
-          io.to(`${convertId}`).emit("feedbackserver", chat);
+          io.sockets.emit("feedbackserver", chat);
         }else{
           const chatMess = new Chat({
             id: convertId,
@@ -80,7 +80,7 @@ io.on("connection", (socket) => {
             ],
           });
           await chatMess.save();
-          io.to(`${convertId}`).emit("feedbackserver", chat);
+          io.sockets.emit("feedbackserver", chat);
         }
       }
     }catch(e){
