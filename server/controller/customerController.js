@@ -61,4 +61,34 @@ const updateDeviceToken = async(req, res) =>{
     }
   };
 
-  module.exports = {getInfoDriverInTripRequest, updateDeviceToken};
+// rating driver 
+const ratingDriver = async(req, res) => {
+  try{
+    // data for Client request server
+    const {userId, rating, idf} = req.body;
+    const result = await customerServices.ratingDriver(userId, rating, idf);
+    
+    // console log update device device token
+    console.log("ratingDriver: ");
+    console.log(result);
+    
+    // check result
+    if (result.status === 400) {
+       return res.status(400).json({
+         msg: result.msg,
+       });
+     } else if (result.status === 500) {
+       return res.status(500).json({
+         error: result.error,
+       });
+     }
+
+    return res.status(200).json(result);
+  }catch(e){
+    return res.status(500).json({
+      error: e.message
+    });
+  }
+};
+
+  module.exports = {ratingDriver, getInfoDriverInTripRequest, updateDeviceToken};

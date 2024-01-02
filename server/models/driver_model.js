@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ratingSchema = require('./rating');
 
 // Model Drivers
 const driverSchema = mongoose.Schema({
@@ -78,7 +79,8 @@ const driverSchema = mongoose.Schema({
    },
    earnings: {
       type: String,
-   }
+   },
+   ratings: [ratingSchema],
 });
 
 const Driver = mongoose.model('Drivers', driverSchema);

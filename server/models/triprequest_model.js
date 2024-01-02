@@ -108,7 +108,9 @@ const tripScheme = mongoose.Schema({
     fareAmount: {
         type: String,
     },
-    
+    ratings: {
+        type: Number,
+    }
 
 });
 
