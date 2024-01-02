@@ -18,7 +18,7 @@ const app = express();
 var server = http.createServer(app);
 var io = require('socket.io')(server);
 const PORT = process.env.PORT || 3000;
-const PORTSERVER = process.env.PORT || 4000;
+const PORTSERVER = process.env.PORTSERVER || 4000;
 
 // middleware 
 app.use(express.json());
@@ -27,11 +27,17 @@ app.use(morgandebug('server:server', 'dev'));
 app.use(cors());
 
 // Router 
+// router admin
 app.use("/api/users", authRouter);
+// router token 
 app.use(tokenRouter);
+// router admin
 app.use("/api/admin", adminRouter)
+// router driver
 app.use('/api/users', driverRouter);
+// router cusotmer 
 app.use('/api/users', customerRouter);
+// router chat
 app.use('/api/chat', chatRouter);
 
 // socket io
