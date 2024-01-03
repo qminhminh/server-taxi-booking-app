@@ -74,6 +74,7 @@ const ratingDriver = async (userId, rating, idf, tripID) => {
       let rate = {
         userId: userId,
         rating: rating,
+        tripID: tripID,
       };
       driver.ratings.push(rate);
       await driver.save();

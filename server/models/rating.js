@@ -9,6 +9,10 @@ const ratingSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  tripID: {
+    type: String,
+    required: true,
+  }
 });
 
 module.exports = ratingSchema;
