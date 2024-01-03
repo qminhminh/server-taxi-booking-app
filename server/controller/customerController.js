@@ -65,8 +65,8 @@ const updateDeviceToken = async(req, res) =>{
 const ratingDriver = async(req, res) => {
   try{
     // data for Client request server
-    const {userId, rating, idf} = req.body;
-    const result = await customerServices.ratingDriver(userId, rating, idf);
+    const {userId, rating, idf, tripID} = req.body;
+    const result = await customerServices.ratingDriver(userId, rating, idf, tripID);
     
     // console log update device device token
     console.log("ratingDriver: ");

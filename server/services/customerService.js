@@ -53,10 +53,10 @@ const getInfoDriverInTripRequest = async() => {
 
 
 // rating driver 
-const ratingDriver = async (userId, rating, idf) => {
+const ratingDriver = async (userId, rating, idf, tripID) => {
   try {
     const driver = await Driver.findOne({ idf: idf });
-    const trip = await TripRequest.findOne({ driverID: idf });
+    const trip = await TripRequest.findOne({ tripID: tripID });
 
     // Check if driver and trip exist
     if (!driver || !trip) {
@@ -67,7 +67,7 @@ const ratingDriver = async (userId, rating, idf) => {
     }
 
     // Update driver ratings
-    const existingRating = driver.ratings.find((r) => r.userId === userId);
+    const existingRating = driver.ratings.find((r) => r.tripID === tripID);
 
     if (!existingRating) {
       // If userId doesn't exist, add a new rating
@@ -78,6 +78,12 @@ const ratingDriver = async (userId, rating, idf) => {
       driver.ratings.push(rate);
       await driver.save();
       
+      trip.ratings = rating;
+      await trip.save();
+    }else{
+      existingRating.rating = rating;
+      await driver.save();
+
       trip.ratings = rating;
       await trip.save();
     }
