@@ -13,7 +13,7 @@ const Driver = require('./models/driver_model');
 const Customer = require('./models/customer_model');
 const Chat = require('./models/chat');
 const chatRouter = require('./routers/chat');
-const DB = "mongodb+srv://hqminh050503:minh050503@cluster0.kornrcw.mongodb.net/?retryWrites=true&w=majority";
+const DB = "mongodb+srv://hqminh050503:minh050503@cluster0.kornrcw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const app = express();
 var server = http.createServer(app);
 var io = require('socket.io')(server);
